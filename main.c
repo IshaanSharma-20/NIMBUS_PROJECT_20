@@ -162,7 +162,7 @@ void addQuestion(QuestionBank *bank) {
     if(bank->question_count >= bank->max_questions) {
         // Resize the array
         bank->max_questions *= 2;
-        Question temp = (Question)realloc(bank->questions, bank->max_questions * sizeof(Question));
+        Question *temp = (Question*)realloc(bank->questions, bank->max_questions * sizeof(Question));
         if(temp == NULL) {
             printf("Memory reallocation failed for question bank!\n");
             return;
@@ -235,7 +235,7 @@ void shuffleQuestions(Question *questions, int count) {
 void takeQuiz(const QuestionBank *bank, ResultManager *manager) {
     if(manager->student_count >= manager->max_students) {
         manager->max_students *= 2;
-        StudentResult temp = (StudentResult)realloc(manager->results, manager->max_students * sizeof(StudentResult));
+        StudentResult *temp = (StudentResult*)realloc(manager->results, manager->max_students * sizeof(StudentResult));
         if(temp == NULL) {
             printf("Memory reallocation failed for result manager!\n");
             return;
@@ -262,9 +262,9 @@ void takeQuiz(const QuestionBank *bank, ResultManager *manager) {
     } while(quiz_questions > bank->question_count);
     
     // Create a copy of questions for shuffling
-    Question quiz_set = (Question)malloc(quiz_questions * sizeof(Question));
+    Question *quiz_set = (Question*)malloc(quiz_questions * sizeof(Question));
     student->quiz_questions = (Question*)malloc(quiz_questions * sizeof(Question)); // Store for evaluation
-    int used_indices = (int)calloc(bank->question_count, sizeof(int));
+    int *used_indices = (int*)calloc(bank->question_count, sizeof(int));
     
     // Select random questions without replacement
     for(int i = 0; i < quiz_questions; i++) {
