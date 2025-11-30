@@ -132,4 +132,58 @@ StudentResult deliver_quiz(QuestionBank *qb, int count, int time_limit) {
 
     return r;
 }
+void quote_menu() {
+    while (1) {
+        printf("\n%s===== MOTIVATIONAL QUOTES =====%s\n", MAGENTA, RESET);
+        printf("1) Random Quote\n");
+        printf("2) Add Quote\n");
+        printf("3) View All Quotes\n");
+        printf("4) Back\n");
+        printf("Choice: ");
+
+        char *c = read_line();
+        int ch = atoi(c);
+        free(c);
+
+        if (ch == 1) {
+            FILE *fp = fopen("quotes.txt", "r");
+            if (!fp) {
+                printf("No quotes yet.\n");
+                continue;
+            }
+
+            char lines[300][256];
+            int n = 0;
+            while (fgets(lines[n], sizeof(lines[n]), fp)) n++;
+            fclose(fp);
+
+            if (n == 0) { printf("No quotes found.\n"); continue; }
+
+            int r = rand() % n;
+            printf("Quote: %s\n", lines[r]);
+
+        } else if (ch == 2) {
+            printf("Enter quote: ");
+            char *q = read_line();
+            FILE *fp = fopen("quotes.txt", "a");
+            fprintf(fp, "%s\n", q);
+            fclose(fp);
+            free(q);
+            printf("Saved.\n");
+
+        } else if (ch == 3) {
+            FILE *fp = fopen("quotes.txt", "r");
+            if (!fp) { printf("No quotes.\n"); continue; }
+            char line[256];
+            while (fgets(line, sizeof(line), fp))
+                printf("%s", line);
+            fclose(fp);
+
+        } else if (ch == 4) {
+            return;
+        } else {
+            printf("Invalid.\n");
+        }
+    }
+}
 
