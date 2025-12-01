@@ -1,9 +1,10 @@
+//PROJECT_20
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include <ctype.h>
-
+//ALL DEFINE
 #define MAX_QUESTION_LENGTH 256
 #define MAX_OPTION_LENGTH 128
 #define MAX_NAME_LENGTH 50
@@ -487,3 +488,4 @@ void toLowerCase(char *str) {
     }
 
 }
+
