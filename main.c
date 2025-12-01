@@ -40,7 +40,7 @@ typedef struct {
     int student_count;
     int max_students;
 } ResultManager;
-
+//ADD FULL FILES
 // Function prototypes
 void initializeQuestionBank(QuestionBank *bank, int initial_size);
 void initializeResultManager(ResultManager *manager, int initial_size);
@@ -89,7 +89,7 @@ int main() {
                 if(question_bank.question_count > 0) {
                     takeQuiz(&question_bank, &result_manager);
                 } else {
-                    printf("No questions available! Please add questions first.\n");
+                    printf("No QUESTION AVAILABLE! Please add questions first.\n");
                 }
                 break;
             case 4:
@@ -485,4 +485,5 @@ void toLowerCase(char *str) {
     for(int i = 0; str[i]; i++) {
         str[i] = tolower(str[i]);
     }
+
 }
